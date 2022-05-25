@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/Header";
+import Movies from "./components/movies/Movies";
+import movieapi from "./api/movies.json";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Swiper
+        spaceBetween={24}
+        slidesPerView={4}
+      >
+        {movieapi.map((mov) => (
+          <SwiperSlide key={mov.id}>
+            <Movies mov={mov} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
   );
-}
+};
 
 export default App;
